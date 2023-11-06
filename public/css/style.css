@@ -1,0 +1,86 @@
+@import url('./bootstrap/bootstrap.css');
+
+/* ! flicering fix */
+html.sr .imgs {
+    visibility: hidden;
+}
+
+/* scroll bar */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #101010;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #202020;
+}
+
+/* * custom css*/
+/* ? index page */
+
+.offcanvas-toggle-button:hover {
+    /* Add your custom styles here */
+    background-color: #a7a7a7;
+    /* Change the background color */
+    color: #fff;
+    /* Change the text color */
+    transition: all 0.5s ease;
+}
+
+.body {
+    width: 100%;
+}
+
+/* todo hero page */
+.jumbotron-cus {
+
+    height: 40rem !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.jumborton-content {
+    display: flex;
+    flex-direction: column !important;
+}
+
+@media screen and (min-width:720px) {
+    .jumborton-content {
+        flex-direction: row !important;
+    }
+
+}
+
+.jumbotron-cus .jumbotron-cust-p {
+    font-weight: bolder !important;
+}
+
+/* Make the image responsive */
+.jumbotron-img-1 {
+    aspect-ratio: auto;
+    width: 22rem;
+    transform: translateX(-10rem) translateY(0rem) scale(0.8) rotate3d(0.9, .05, 0.5, 45deg);
+    border-radius: 1.25rem;
+    position: absolute;
+    z-index: 1;
+}
+
+/* Make the image responsive */
+.jumbotron-img-2 {
+    aspect-ratio: auto;
+    width: 22rem;
+    transform: translateX(-6rem) translateY(-5rem) scale(0.8) rotate3d(0.8, .1, 0.7, 45deg);
+    border-radius: 1.25rem;
+    position: relative;
+}

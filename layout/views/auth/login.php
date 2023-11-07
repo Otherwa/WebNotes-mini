@@ -1,8 +1,8 @@
 <?php
 require_once("../../../config/dbCon.php");
+session_start();
 
 // Check if the user is already logged in and has an active session
-session_start();
 if (isset($_SESSION['user_id'])) {
     // Redirect to a different page, or display a message that they are already logged in.
     header("Location: ./dashboard.php");

@@ -7,16 +7,16 @@
     <div class="offcanvas-body p-4">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="Hero">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="#About">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Services</a>
+                <a class="nav-link" href="#Contact">Contact</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
+            <li>
+                <a class="nav-link" href="./layout/views/auth/login.php">Admin</a>
             </li>
         </ul>
     </div>

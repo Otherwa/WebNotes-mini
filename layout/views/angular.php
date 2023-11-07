@@ -49,7 +49,7 @@ function getAngularData(){
     <!-- Header Section -->
     <div class="d-flex flex-column">
         <div class="col-12">
-            <?php include_once('../components/header.php'); ?>
+            <?php include_once('../components/header/user/header.php'); ?>
         </div>
 
         <!-- Body Content Section -->

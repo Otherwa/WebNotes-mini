@@ -26,12 +26,12 @@ function getDatabaseSubConnection()
 // Use the $DB object to perform database operations
 $connection = getDatabaseSubConnection();
 
-function getAngularInfo()
+function getContextInfo()
 {
     global $connection;
 
     // SQL query to fetch navigation items from a table (replace 'your_table' with your actual table name)
-    $sql = "SELECT * FROM content where context_id = 4";
+    $sql = "SELECT * FROM context";
     $result = $connection->query($sql);
 
     // Check if there are results
@@ -54,7 +54,7 @@ function getAngularInfo()
     </div>
     <div class="offcanvas-body p-4">
         <ul class="navbar-nav">
-            <?php getAngularInfo() ?>
+            <?php getContextInfo() ?>
         </ul>
     </div>
 </div>

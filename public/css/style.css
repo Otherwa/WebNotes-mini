@@ -1,9 +1,6 @@
 @import url('./bootstrap/bootstrap.css');
 
 /* ! flicering fix */
-html.sr .imgs {
-    visibility: hidden;
-}
 
 /* scroll bar */
 /* width */

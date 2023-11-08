@@ -7,7 +7,7 @@
     <div class="offcanvas-body p-4">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="Hero">Home</a>
+                <a class="nav-link" href="#Home">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#About">About</a>

@@ -21,7 +21,7 @@
         <?php include_once('./layout/components/sidebar/index/sidebar.php'); ?>
 
         <!-- hero page -->
-        <div class="jumbotron jumbotron-fluid p-5 bg-dark jumbotron-cus">
+        <div id="Home" class="jumbotron jumbotron-fluid p-5 bg-dark jumbotron-cus">
             <div class="jumborton-content p-4">
                 <div class="container pt-5 text-white">
                     <p class="display-4 jumbotron-cust-p pt-5">Your Lowkey Gateway <br> to Web Development</p>
@@ -36,8 +36,26 @@
             </div>
         </div>
 
-        <!-- Footer Section -->
-        <?php include_once('./layout/components/footer.php'); ?>
+        <!-- about -->
+        <div id="About" class="jumbotron jumbotron-fluid p-5 bg-light jumbotron-cus">
+            <div class="jumborton-content p-4">
+                <div class="container mt-5 p-3 text-white">
+                    <p class="display-4 text-dark jumbotron-cust-p pt-5">About Us</p>
+                    <p class="text-dark font-monospace">Fuck this Shit</p>
+                </div>
+                <div>
+                    <div class="container mt-5 p-3">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic ex nobis, alias soluta, quas earum
+                        incidunt praesentium error a cum laboriosam saepe dignissimos porro perferendis repellendus.
+                        Laboriosam necessitatibus placeat in!
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="Contact">
+            <!-- Footer Section -->
+            <?php include_once('./layout/components/footer.php'); ?>
+        </div>
     </div>
 </div>
 </body>

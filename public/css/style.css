@@ -81,16 +81,57 @@
     position: relative;
 }
 
+/* !  tab res */
+@media screen and (max-width:769px) {
+    .jumbotron-img-2 {
+        aspect-ratio: auto;
+        width: 12rem !important;
+        transform: translateX(-2rem) translateY(5rem) scale(0.8) rotate3d(0.8, .1, 0.7, 45deg) !important;
+    }
+
+    .jumbotron-img-1 {
+        aspect-ratio: auto;
+        width: 12rem !important;
+        transform: translateX(2rem) translateY(8rem) scale(0.8) rotate3d(0.8, .1, 0.7, 45deg) !important;
+    }
+}
+
 
 /* ? pre in all info display */
+/* ! mobile res */
 @media screen and (max-width:720px) {
     code pre {
         font-size: 0.8rem !important;
     }
+
+    .jumbotron-img-2 {
+        aspect-ratio: auto;
+        width: 12rem !important;
+        transform: translateX(4rem) translateY(-5rem) scale(0.8) rotate3d(0.8, .1, 0.7, 45deg) !important;
+    }
+
+    .jumbotron-img-1 {
+        aspect-ratio: auto;
+        width: 12rem !important;
+        transform: translateX(0rem) translateY(-2rem) scale(0.8) rotate3d(0.8, .1, 0.7, 45deg) !important;
+    }
 }
+
+
+
 
 pre {
     white-space: pre-wrap;
 }
 
 /* ? pre in all info display */
+
+
+/* footer */
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 2rem;
+}

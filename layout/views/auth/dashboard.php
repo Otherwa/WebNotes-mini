@@ -1,8 +1,13 @@
 <?php 
 include_once("../../../config/dbCon.php");
-
+session_start();
 ## Database configuration
-
+// Check if the user is already logged in and has an active session
+if (!isset($_SESSION['user_id'])) {
+    // User is not logged in, so redirect to the login page
+    header("Location: ./login.php");
+    exit; // Make sure to exit to prevent further script execution
+}
 
 function generateTableRows($tableId) {
     $connection = getDatabaseMainConnection();

@@ -1,5 +1,12 @@
 <?php
 include_once("../../../../config/dbCon.php");
+session_start();
+// Check if the user is already logged in and has an active session
+if (!isset($_SESSION['user_id'])) {
+    // User is not logged in, so redirect to the login page
+    header("Location: ../login.php");
+    exit; // Make sure to exit to prevent further script execution
+}
 // Check if the 'Id' parameter is set in the URL
 if (isset($_GET['Id'])) {
     $id = $_GET['Id'];

@@ -56,14 +56,13 @@
     .jumborton-content {
         flex-direction: row !important;
     }
-
 }
 
 .jumbotron-cus .jumbotron-cust-p {
     font-weight: bolder !important;
 }
 
-/* Make the image responsive */
+/* ? Make the image responsive */
 .jumbotron-img-1 {
     aspect-ratio: auto;
     width: 22rem;
@@ -73,7 +72,7 @@
     z-index: 1;
 }
 
-/* Make the image responsive */
+/* ? Make the image responsive */
 .jumbotron-img-2 {
     aspect-ratio: auto;
     width: 22rem;
@@ -81,3 +80,17 @@
     border-radius: 1.25rem;
     position: relative;
 }
+
+
+/* ? pre in all info display */
+@media screen and (max-width:720px) {
+    code pre {
+        font-size: 0.8rem !important;
+    }
+}
+
+pre {
+    white-space: pre-wrap;
+}
+
+/* ? pre in all info display */

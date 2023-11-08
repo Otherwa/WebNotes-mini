@@ -16,10 +16,16 @@ function generateTableRows($tableId) {
         $tableRows .= "<tr>";
         $tableRows .= "<td>" . $row["Id"] . "</td>";
         $tableRows .= "<td>" . $row['Name'] . "</td>";
-        $tableRows .= "<td class='w-75'>" . $row['Description'] . "</td>";
+        $tableRows .= "<td class='w-75'>" . (htmlspecialchars($row["Description"])). "</td>";
         $tableRows .= "<td>" . $row['Context_id'] . "</td>";
-        $tableRows .= "<td>" . $row['Created_at'] . "</td>";
-        $tableRows .= "<td>" . $row['Updated_at'] . "</td>";
+        $timestamp = strtotime($row['Created_at']);
+        $new_date_format = date('l, F j, Y', $timestamp);
+        $tableRows .= "<td>" . $new_date_format . "</td>";
+        $timestamp = strtotime($row['Updated_at']);
+        $new_date_format = date('l, F j, Y', $timestamp);
+        $tableRows .= "<td>" . $new_date_format . "</td>";
+        $id = $row["Id"];
+        $tableRows .= "<td class='w-25'>" . "<a class='btn btn-outline-warning' href='./content/content_update.php?Id=$id'>Update</a>&nbsp;&nbsp;"."<a class='btn btn-outline-danger' href='./content/content_delete.php?Id=$id'>Delete</a>" ."</td>";
         $tableRows .= "</tr>";
     }
 
@@ -31,6 +37,7 @@ function generateHTMLTable($tableName,$tableId, $tableClass) {
     echo "<span id='$tableName'></span>";
     echo '<br>';
     echo '<div class="container p-4 mt-5">';
+    echo "<a class='btn btn-outline-primary' href='./content/content_add.php?For=$tableName'>$tableName Content-Add</a>";
     echo '<div class="card mt-5">';
     echo "<div class='card-header'>$tableName</div>";
     echo '<div class="card-body">';
@@ -44,6 +51,7 @@ function generateHTMLTable($tableName,$tableId, $tableClass) {
     echo '<th>Context_id</th>';
     echo '<th>Created_at</th>';
     echo '<th>Updated_at</th>';
+    echo '<th>Action</th>';
     echo '</tr>';
     echo '</thead>';
     echo '<tbody>';
@@ -66,6 +74,7 @@ function get_contexts(){
     while ($row = mysqli_fetch_assoc($Rec)) {
         $tablename = $row['Name'];
         $tableId = $row['id'];
+        
         generateHTMLTable($tablename,$tableId, 'table table-container table-striped hover mt-5');
     }
 }

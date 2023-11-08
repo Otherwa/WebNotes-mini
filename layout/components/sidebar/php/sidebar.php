@@ -28,11 +28,11 @@ $connection = getDatabaseSubConnection();
 function getPHPInfo(){
     global $connection;
 
-    // SQL query to fetch navigation items from a table (replace 'your_table' with your actual table name)
+    
     $sql = "SELECT * FROM content where context_id = 5";
     $result = $connection->query($sql);
     
-    // Check if there are results
+
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             // Generate navigation items using fetched data

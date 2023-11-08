@@ -16,7 +16,7 @@ function getPHPData(){
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             // Generate navigation items using fetched data
-            echo '<li class="nav-item"><span class="nav-link" id="' . $row["Name"] . '"><span class="display-6 text-decoration-underline">' . $row["Name"] . '</span><br><div class="p-3 m-3 rounded-2 bg-dark"><code><pre style="font-size:1.05rem">' . (htmlspecialchars($row["Description"])) . '</pre></code></div></li>';
+            echo '<li class="nav-item"><span class="nav-link" id="' . $row["Name"] . '"><span class="display-6 text-decoration-underline">' . $row["Name"] . '</span><br><br><div class="p-3 m-3 rounded-2 bg-dark"><code><pre style="font-size:1.05rem">' . (htmlspecialchars($row["Description"])) . '</pre></code></div></li>';
         }
     } else {
         echo "No items found.";

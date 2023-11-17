@@ -49,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://0therwa.web.app/imgs/favicon.ico">
     <title>WebNote-Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.css"
         integrity="sha512-/S+MqXMTR8S7bZjjPgdyKms8X5zQcJ9uMzRmw28A6o3drTqZhk7sgIwEvebMkzdLjBdGF6LkPXtZ/CPR8XYzeQ=="
@@ -71,9 +72,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     style="width:60px;height:auto">
                 <br>
                 <?php if (isset($error_message)): ?>
-                <div class="alert alert-danger">
-                    <?php echo $error_message; ?>
-                </div>
+                    <div class="alert alert-danger">
+                        <?php echo $error_message; ?>
+                    </div>
                 <?php endif; ?>
                 <form method="post">
                     <div class="mb-6">

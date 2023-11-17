@@ -30,7 +30,7 @@ function getContextInfo()
 {
     global $connection;
 
-    
+
     $sql = "SELECT * FROM context";
     $result = $connection->query($sql);
 

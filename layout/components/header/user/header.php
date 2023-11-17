@@ -1,7 +1,8 @@
-<?php 
+<?php
 
 
-function getDatabaseMainConnection(){
+function getDatabaseMainConnection()
+{
     $SERVER_URL = 'localhost:3306';
     $USER_AGENT = 'root';
     $PASSWORD = '';
@@ -24,21 +25,22 @@ function getDatabaseMainConnection(){
 
 $connection = getDatabaseMainConnection();
 
-function getContext(){
+function getContext()
+{
     global $connection;
     global $id;
-    
+
     $sql = "SELECT * FROM context";
     $result = $connection->query($sql);
-    
+
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             // Generate navigation items using fetched data
             $id = $row["id"];
             $name = $row["Name"];
-            echo  '<li class="nav-item">';
-            echo'<a class="nav-link" href="/layout/views/content.php?id='.$id.'&title='.$name.'">'. ucwords($name) .'</a>';
+            echo '<li class="nav-item">';
+            echo '<a class="nav-link" href="/layout/views/content.php?id=' . $id . '&title=' . $name . '">' . ucwords($name) . '</a>';
             echo '</li>';
         }
     } else {

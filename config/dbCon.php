@@ -1,6 +1,7 @@
 <?php
 
-function getDatabaseMainConnection(){
+function getDatabaseMainConnection()
+{
     $SERVER_URL = 'localhost:3306';
     $USER_AGENT = 'root';
     $PASSWORD = '';

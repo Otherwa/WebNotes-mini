@@ -16,7 +16,7 @@ if (isset($_GET['Id'])) {
         die("Database connection failed: " . mysqli_connect_error());
     }
 
-    
+
     $query = "SELECT * FROM content WHERE Id = $id";
     $result = mysqli_query($connection, $query);
 
@@ -36,7 +36,7 @@ if (isset($_GET['Id'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
- 
+
     $name = $_POST['name'];
     $description = $_POST['description'];
 
@@ -70,6 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://0therwa.web.app/imgs/favicon.ico">
     <title>WebNotes-Update-Content</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="../../../../public/css/style.css">

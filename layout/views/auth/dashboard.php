@@ -116,6 +116,7 @@ function getContext()
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://0therwa.web.app/imgs/favicon.ico">
     <title>WebNotes-Dashboard</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="../../../public/css/style.css">

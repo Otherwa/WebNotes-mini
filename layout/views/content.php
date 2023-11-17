@@ -10,13 +10,14 @@
 
 $ContentID = $_GET["id"];
 $title = $_GET["title"];
-function getHTMLTagInfos(){
+function getHTMLTagInfos()
+{
     global $connection;
     global $ContentID;
-    
+
     $sql = "SELECT * FROM content where context_id = $ContentID";
     $result = $connection->query($sql);
-    
+
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -28,13 +29,14 @@ function getHTMLTagInfos(){
     }
 }
 
-function getContentData(){
+function getContentData()
+{
     global $connection;
     global $ContentID;
-    
+
     $sql = "SELECT * FROM content where context_id = $ContentID";
     $result = $connection->query($sql);
-    
+
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -53,18 +55,21 @@ function getContentData(){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebNotes-<?php echo $title; ?></title>
+    <link rel="icon" type="image/x-icon" href="https://0therwa.web.app/imgs/favicon.ico">
+    <title>WebNotes-
+        <?php echo $title; ?>
+    </title>
     <link rel="stylesheet" href="../../public/css/style.css">
 
     <!-- ! custom -->
     <style>
-    ol {
-        padding: 2rem;
-    }
+        ol {
+            padding: 2rem;
+        }
 
-    ol li {
-        padding: 10px;
-    }
+        ol li {
+            padding: 10px;
+        }
     </style>
 </head>
 
@@ -85,7 +90,7 @@ function getContentData(){
             </div>
             <div class="offcanvas-body p-4">
                 <ul class="navbar-nav">
-                    <?php getHTMLTagInfos()?>
+                    <?php getHTMLTagInfos() ?>
                 </ul>
             </div>
         </div>
@@ -105,7 +110,7 @@ function getContentData(){
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-</script>
+    </script>
 <!-- Scroll Reveal -->
 <script type="text/javascript" src="https://unpkg.com/scrollreveal"></script>
 <script type="text/javascript" src="./public/js/index.js"></script>

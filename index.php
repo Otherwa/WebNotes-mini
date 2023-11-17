@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://0therwa.web.app/imgs/favicon.ico">
     <title>WebNotes</title>
     <link rel="stylesheet" href="./public/css/style.css">
 </head>

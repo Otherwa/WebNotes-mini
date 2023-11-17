@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once("../../../config/dbCon.php");
 session_start();
 ## Database configuration
@@ -9,9 +9,10 @@ if (!isset($_SESSION['user_id'])) {
     exit; // Make sure to exit to prevent further script execution
 }
 
-function generateTableRows($tableId) {
+function generateTableRows($tableId)
+{
     $connection = getDatabaseMainConnection();
-    
+
     $empQuery = "SELECT * FROM content where Context_id=$tableId";
     $empRecords = mysqli_query($connection, $empQuery);
     $tableRows = ''; // Initialize an empty variable to store the HTML table rows
@@ -21,7 +22,7 @@ function generateTableRows($tableId) {
         $tableRows .= "<tr>";
         $tableRows .= "<td>" . $row["Id"] . "</td>";
         $tableRows .= "<td>" . $row['Name'] . "</td>";
-        $tableRows .= "<td class='w-75'>" . (htmlspecialchars($row["Description"])). "</td>";
+        $tableRows .= "<td class='w-50'>" . (htmlspecialchars($row["Description"])) . "</td>";
         $tableRows .= "<td>" . $row['Context_id'] . "</td>";
         $timestamp = strtotime($row['Created_at']);
         $new_date_format = date('l, F j, Y', $timestamp);
@@ -30,14 +31,15 @@ function generateTableRows($tableId) {
         $new_date_format = date('l, F j, Y', $timestamp);
         $tableRows .= "<td>" . $new_date_format . "</td>";
         $id = $row["Id"];
-        $tableRows .= "<td class='w-25'>" . "<a class='btn btn-outline-warning' href='./content/content_update.php?Id=$id'>Update</a>&nbsp;&nbsp;"."<a class='btn btn-outline-danger' href='./content/content_delete.php?Id=$id'>Delete</a>" ."</td>";
+        $tableRows .= "<td class='w-25'>" . "<a class='btn btn-outline-warning' href='./content/content_update.php?Id=$id'>Update</a>&nbsp;&nbsp;" . "<a class='btn btn-outline-danger' href='./content/content_delete.php?Id=$id'>Delete</a>" . "</td>";
         $tableRows .= "</tr>";
     }
 
     echo $tableRows;
 }
 
-function generateHTMLTable($tableName,$tableId, $tableClass) {
+function generateHTMLTable($tableName, $tableId, $tableClass)
+{
     echo '<div class="container-fluid">';
     echo "<span id='$tableName'></span>";
     echo '<br>';
@@ -72,22 +74,42 @@ function generateHTMLTable($tableName,$tableId, $tableClass) {
 }
 
 
-function get_contexts(){
+function get_contexts()
+{
     $connection = getDatabaseMainConnection();
     $empQuery = "SELECT * FROM context";
     $Rec = mysqli_query($connection, $empQuery);
     while ($row = mysqli_fetch_assoc($Rec)) {
         $tablename = $row['Name'];
         $tableId = $row['id'];
-        
-        generateHTMLTable($tablename,$tableId, 'table table-container table-striped hover mt-5');
+
+        generateHTMLTable($tablename, $tableId, 'table table-container table-striped hover mt-5');
+    }
+}
+
+function getContext()
+{
+    global $connection;
+    global $id;
+
+    $sql = "SELECT * FROM context";
+    $result = $connection->query($sql);
+
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            // Generate navigation items using fetched data
+            $id = $row["id"];
+            $name = $row["Name"];
+            echo '<li class="nav-item">';
+            echo '<p>' . ucwords($name) . '&nbsp;<a class="text-danger" href="./content/context_delete.php?Id=' . $id . '">Delete</a></p>';
+            echo '</li>';
+        }
+    } else {
+        echo "No navigation items found.";
     }
 }
 ?>
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,10 +133,55 @@ function get_contexts(){
         <!-- Your page content goes here -->
         <?php include_once('../../components/sidebar/admin/sidebar.php'); ?>
 
+        <!-- new Context -->
+        <div class="container mt-5 p-3">
+            <!-- Button trigger modal -->
+            <div class="container mt-5 d-flex flex-row-reverse">
+                <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#myModal">
+                    New Context 📝
+                </button>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel">Context Name</h5>
+                        </div>
+                        <div class="modal-body">
+                            <!--form -->
+                            <div class="container d-flex flex-row gap-2 ">
+                                <form method="post" class="w-50" action="./content/context_add.php">
+                                    <div class="form-group">
+                                        <label for="name" class="mb-3">Name</label>
+                                        <input type="text" class="form-control" name="name" placeholder="Name">
+                                    </div>
+                                    <br>
+                                    <button type="submit" class="btn btn-primary">Add</button>
+                                </form>
+                                <!--form -->
+                                <div class="container p-4">
+                                    <ul type="square" class="overflow-y-scroll h-100">
+                                        <?php getContext() ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+
         <!-- tables -->
         <?php // Call the function to generate the HTML table
         get_contexts()
-        ?>
+            ?>
 
 
         <!-- Footer Section -->
@@ -130,9 +197,9 @@ function get_contexts(){
 </script>
 
 <!-- Bootstrap JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
 <!-- Scroll Reveal -->
 <script type="text/javascript" src="https://unpkg.com/scrollreveal"></script>
 <script type="text/javascript" src="../../../public/js/dashboard.js"></script>

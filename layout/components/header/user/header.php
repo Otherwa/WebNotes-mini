@@ -1,3 +1,52 @@
+<?php 
+
+
+function getDatabaseMainConnection(){
+    $SERVER_URL = 'localhost:3306';
+    $USER_AGENT = 'root';
+    $PASSWORD = '';
+    $DB_NAME = 'WebNote';
+
+    $servername = $SERVER_URL;
+    $username = $USER_AGENT;
+    $password = $PASSWORD;
+    $database = $DB_NAME;
+
+    $connection = new mysqli($servername, $username, $password, $database);
+
+    if ($connection->connect_error) {
+        die("Connection failed: " . $connection->connect_error);
+    }
+
+    return $connection;
+}
+
+
+$connection = getDatabaseMainConnection();
+
+function getContext(){
+    global $connection;
+    global $id;
+    
+    $sql = "SELECT * FROM context";
+    $result = $connection->query($sql);
+    
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            // Generate navigation items using fetched data
+            $id = $row["id"];
+            $name = $row["Name"];
+            echo  '<li class="nav-item">';
+            echo'<a class="nav-link" href="/layout/views/content.php?id='.$id.'&title='.$name.'">'. ucwords($name) .'</a>';
+            echo '</li>';
+        }
+    } else {
+        echo "No navigation items found.";
+    }
+}
+
+?>
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-white p-4 gap-2 font-monospace fixed-top">
         <!-- Offcanvas button -->
@@ -13,21 +62,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/layout/views/html.php">HTML</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/layout/views/css.php">CSS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/layout/views/bootstrap.php">Bootstrap</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/layout/views/angular.php">Angular</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/layout/views/php.php">PHP</a>
-                </li>
+                <?php getContext() ?>
             </ul>
         </div>
     </nav>

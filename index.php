@@ -38,32 +38,29 @@
 
         <!-- about -->
         <div id="About" class="jumbotron jumbotron-fluid p-5 bg-light jumbotron-cus">
-            <div class="jumborton-content p-4">
-                <div class="container mt-5 p-3 text-white">
-                    <p class="display-4 text-dark jumbotron-cust-p pt-5">About Us</p>
-                    <p class="text-dark font-monospace">Fuck this Shit</p>
-                </div>
-                <div>
-                    <div class="container mt-5 p-3">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic ex nobis, alias soluta, quas earum
-                        incidunt praesentium error a cum laboriosam saepe dignissimos porro perferendis repellendus.
-                        Laboriosam necessitatibus placeat in!
-                    </div>
+            <div class="w-75 jumborton-content p-4">
+                <div></div>
+                <p class="display-4 text-dark jumbotron-cust-p pt-5">About Us</p>
+                <div class="container mt-5 p-3">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic ex nobis, alias soluta, quas earum
+                    incidunt praesentium error a cum laboriosam saepe dignissimos porro perferendis repellendus.
+                    Laboriosam necessitatibus placeat in!
                 </div>
             </div>
         </div>
-        <div id="Contact">
-            <!-- Footer Section -->
-            <?php include_once('./layout/components/footer.php'); ?>
-        </div>
     </div>
+    <div id="Contact">
+        <!-- Footer Section -->
+        <?php include_once('./layout/components/footer.php'); ?>
+    </div>
+</div>
 </div>
 </body>
 <!-- Bootstrap JS-->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-</script>
+    </script>
 <!-- Scroll Reveal -->
 <script type="text/javascript" src="https://unpkg.com/scrollreveal"></script>
 <script type="text/javascript" src="./public/js/index.js"></script>

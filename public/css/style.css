@@ -1,6 +1,14 @@
 @import url('./bootstrap/bootstrap.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500&family=Poppins&display=swap');
 
 /* ! flicering fix */
+/* a,
+p,
+h1,
+h2,
+h3 {
+    font-family: 'Noto Sans', sans-serif !important;
+} */
 
 /* scroll bar */
 /* width */
@@ -41,7 +49,7 @@
 
 /* todo hero page */
 .jumbotron-cus {
-
+    gap: 0.5rem !important;
     height: 40rem !important;
     background-repeat: no-repeat;
     background-size: cover;
@@ -94,6 +102,10 @@
         width: 12rem !important;
         transform: translateX(2rem) translateY(8rem) scale(0.8) rotate3d(0.8, .1, 0.7, 45deg) !important;
     }
+
+    #elgato {
+        display: none !important;
+    }
 }
 
 
@@ -116,9 +128,6 @@
         transform: translateX(0rem) translateY(-2rem) scale(0.8) rotate3d(0.8, .1, 0.7, 45deg) !important;
     }
 }
-
-
-
 
 pre {
     white-space: pre-wrap;

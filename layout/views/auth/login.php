@@ -8,7 +8,7 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get and escape user input from the form
     $connection = getDatabaseMainConnection();
-    
+
     $username = mysqli_real_escape_string($connection, $_POST["username"]);
     $password = mysqli_real_escape_string($connection, $_POST["password"]);
 
@@ -67,23 +67,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="w-50 font-monospace border-2 rounded-2 p-4">
             <div>
                 <h2 class="display-6">Login</h2>
-                <img src="https://i.pinimg.com/originals/7d/73/86/7d7386100a718ac5b487fddc9bcb5d4b.gif" alt="hello"
-                    style="width:40px;height:auto">
+                <img src="https://i.pinimg.com/originals/80/7b/5c/807b5c4b02e765bb4930b7c66662ef4b.gif" alt="hello"
+                    style="width:60px;height:auto">
                 <br>
-                <?php if (isset($error_message)) : ?>
-                <div class="alert alert-danger"><?php echo $error_message; ?></div>
+                <?php if (isset($error_message)): ?>
+                <div class="alert alert-danger">
+                    <?php echo $error_message; ?>
+                </div>
                 <?php endif; ?>
                 <form method="post">
                     <div class="mb-6">
-                        <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-                            username</label>
+                        <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Username</label>
                         <input type="username" id="username" name="username"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="admin" required>
                     </div>
                     <div class="mb-6">
-                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-                            password</label>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Password (admin)</label>
                         <input type="password" id="password" name="password"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required>

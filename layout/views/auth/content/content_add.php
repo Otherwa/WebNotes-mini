@@ -12,7 +12,7 @@ if (!isset($_SESSION['user_id'])) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
     $description = $_POST['description'];
-    $For= $_GET['For'] ;
+    $For = $_GET['For'];
 
     $connection = getDatabaseMainConnection();
 
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
 
-    
+
     $query = "SELECT * FROM context WHERE Name='$For'";
     $Result = mysqli_query($connection, $query);
 
@@ -31,18 +31,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $row = $Result->fetch_assoc();
         $context_id = $row["id"];
 
-
+        $description = mysqli_real_escape_string($connection, $description);
         $insertQuery = "INSERT INTO content (Name,Context_id, Description, Created_at) VALUES ('$name','$context_id', '$description', NOW())";
-
+        echo $insertQuery;
+        ;
         $insertResult = mysqli_query($connection, $insertQuery);
-    
+
         if ($insertResult) {
             header("Location: ../dashboard.php");
         } else {
             echo "Error adding new content: " . mysqli_error($connection);
         }
-    }else{
-        echo "". mysqli_error($connection);
+    } else {
+        echo "" . mysqli_error($connection);
     }
 
     mysqli_close($connection);
@@ -65,7 +66,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php include_once('../../../components/header/admin_crud/header.php'); ?>
         </div>
         <div class="container mt-5 p-4">
-            <h1>Add Content for <?php echo $_GET['For']; ?></h1>
+            <h1>Add Content for
+                <?php echo $_GET['For']; ?>
+            </h1>
             <form method="post">
                 <div class="form-group">
                     <label for="name">Name</label>

@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Check if $name and $description are empty
     if (empty($name) || empty($description)) {
         echo "Name and description cannot be empty.";
-        exit;
+        exit();
     }
 
     $DB = new DatabaseConnection();

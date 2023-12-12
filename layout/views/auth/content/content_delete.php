@@ -1,6 +1,7 @@
 <?php
 include_once("../../../../config/dbCon.php");
 session_start();
+
 // Check if the user is already logged in and has an active session
 if (!isset($_SESSION['user_id'])) {
     // User is not logged in, so redirect to the login page
@@ -10,7 +11,9 @@ if (!isset($_SESSION['user_id'])) {
 
 if (isset($_GET['Id'])) {
     $id = $_GET['Id'];
-    $connection = getDatabaseMainConnection();
+
+    $DB = new DatabaseConnection();
+    $connection = $DB->getConnection();
 
     if (!$connection) {
         die("Database connection failed: " . mysqli_connect_error());
@@ -25,15 +28,18 @@ if (isset($_GET['Id'])) {
 
         if ($deleteResult) {
             header("Location: ../dashboard.php");
+            exit; // Make sure to exit after redirect
         } else {
             echo "Error deleting record: " . mysqli_error($connection);
         }
     } else {
         echo "Record not found!";
     }
-    mysqli_close($connection);
+
+    $DB->closeConnection();
 } else {
     header("Location: ../dashboard.php");
+    exit; // Make sure to exit after redirect
 }
 ?>
 <!DOCTYPE html>

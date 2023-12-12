@@ -1,26 +1,40 @@
 <?php
 
-function getDatabaseMainConnection()
+class DatabaseConnection
 {
-    $SERVER_URL = 'localhost:3306';
-    $USER_AGENT = 'root';
-    $PASSWORD = '';
-    $DB_NAME = 'WebNote';
+    private const servername = 'localhost';
+    private const username = 'root';
+    private const password = '';
+    private const database = 'webnote';
+    private $connection;
 
-    $servername = $SERVER_URL;
-    $username = $USER_AGENT;
-    $password = $PASSWORD;
-    $database = $DB_NAME;
-
-    $connection = new mysqli($servername, $username, $password, $database);
-
-    if ($connection->connect_error) {
-        die("Connection failed: " . $connection->connect_error);
+    public function __construct()
+    {
+        $this->connect();
     }
 
-    return $connection;
+    private function connect()
+    {
+        $this->connection = new mysqli(self::servername, self::username, self::password, self::database);
+
+        if ($this->connection->connect_error) {
+            die("Connection failed: " . $this->connection->connect_error);
+        }
+    }
+
+    public function getConnection()
+    {
+        return $this->connection;
+    }
+
+    public function closeConnection()
+    {
+        if ($this->connection) {
+            $this->connection->close();
+        }
+    }
 }
 
-?>
 
+?>
 <!DOCTYPE html>

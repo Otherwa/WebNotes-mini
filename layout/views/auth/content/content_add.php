@@ -1,7 +1,7 @@
 <?php
 include_once("../../../../config/dbCon.php");
 session_start();
-// Check if the user is already logged in and has an active session
+
 // Check if the user is already logged in and has an active session
 if (!isset($_SESSION['user_id'])) {
     // User is not logged in, so redirect to the login page
@@ -14,41 +14,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $description = $_POST['description'];
     $For = $_GET['For'];
 
-    $connection = getDatabaseMainConnection();
+    // Check if $name and $description are empty
+    if (empty($name) || empty($description)) {
+        echo "Name and description cannot be empty.";
+        exit;
+    }
 
+    $DB = new DatabaseConnection();
+    $connection = $DB->getConnection();
 
     if (!$connection) {
         die("Database connection failed: " . mysqli_connect_error());
     }
 
+    try {
+        $query = "SELECT * FROM context WHERE Name='$For'";
+        $Result = mysqli_query($connection, $query);
 
+        $context_id = null;
+        if (mysqli_num_rows($Result) > 0) {
+            $row = $Result->fetch_assoc();
+            $context_id = $row["id"];
 
-    $query = "SELECT * FROM context WHERE Name='$For'";
-    $Result = mysqli_query($connection, $query);
+            $description = mysqli_real_escape_string($connection, $description);
 
-    $context_id = Null;
-    if (mysqli_num_rows($Result) > 0) {
-        $row = $Result->fetch_assoc();
-        $context_id = $row["id"];
+            $insertQuery = "INSERT INTO content (Name, Context_id, Description, Created_at) VALUES ('$name','$context_id', '$description', NOW())";
 
-        $description = mysqli_real_escape_string($connection, $description);
-        $insertQuery = "INSERT INTO content (Name,Context_id, Description, Created_at) VALUES ('$name','$context_id', '$description', NOW())";
-        echo $insertQuery;
-        ;
-        $insertResult = mysqli_query($connection, $insertQuery);
+            if (!mysqli_query($connection, $insertQuery)) {
+                throw new Exception("Error adding new content: " . mysqli_error($connection));
+            }
 
-        if ($insertResult) {
             header("Location: ../dashboard.php");
         } else {
-            echo "Error adding new content: " . mysqli_error($connection);
+            throw new Exception("Context not found: " . mysqli_error($connection));
         }
-    } else {
-        echo "" . mysqli_error($connection);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    } finally {
+        $DB->closeConnection();
     }
-
-    mysqli_close($connection);
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>

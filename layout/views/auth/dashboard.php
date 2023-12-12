@@ -11,7 +11,8 @@ if (!isset($_SESSION['user_id'])) {
 
 function generateTableRows($tableId)
 {
-    $connection = getDatabaseMainConnection();
+    $DB = new DatabaseConnection();
+    $connection = $DB->getConnection();
 
     $empQuery = "SELECT * FROM content where Context_id=$tableId";
     $empRecords = mysqli_query($connection, $empQuery);
@@ -36,6 +37,8 @@ function generateTableRows($tableId)
     }
 
     echo $tableRows;
+
+    $DB->closeConnection();
 }
 
 function generateHTMLTable($tableName, $tableId, $tableClass)
@@ -76,7 +79,9 @@ function generateHTMLTable($tableName, $tableId, $tableClass)
 
 function get_contexts()
 {
-    $connection = getDatabaseMainConnection();
+    $DB = new DatabaseConnection();
+    $connection = $DB->getConnection();
+
     $empQuery = "SELECT * FROM context";
     $Rec = mysqli_query($connection, $empQuery);
     while ($row = mysqli_fetch_assoc($Rec)) {
@@ -85,12 +90,16 @@ function get_contexts()
 
         generateHTMLTable($tablename, $tableId, 'table table-container table-striped hover mt-5');
     }
+
+    $DB->closeConnection();
 }
 
 function getContext()
 {
-    global $connection;
     global $id;
+
+    $DB = new DatabaseConnection();
+    $connection = $DB->getConnection();
 
     $sql = "SELECT * FROM context";
     $result = $connection->query($sql);
@@ -152,7 +161,7 @@ function getContext()
                         </div>
                         <div class="modal-body">
                             <!--form -->
-                            <div class="container d-flex flex-row gap-2 ">
+                            <div class="container d-flex flex-row gap-2 h-100">
                                 <form method="post" class="w-50" action="./content/context_add.php">
                                     <div class="form-group">
                                         <label for="name" class="mb-3">Name</label>
@@ -200,7 +209,7 @@ function getContext()
 <!-- Bootstrap JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+</script>
 <!-- Scroll Reveal -->
 <script type="text/javascript" src="https://unpkg.com/scrollreveal"></script>
 <script type="text/javascript" src="../../../public/js/dashboard.js"></script>

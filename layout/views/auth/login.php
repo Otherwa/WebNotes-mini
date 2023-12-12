@@ -7,7 +7,8 @@ session_start();
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get and escape user input from the form
-    $connection = getDatabaseMainConnection();
+    $DB = new DatabaseConnection();
+    $connection = $DB->getConnection();
 
     $username = mysqli_real_escape_string($connection, $_POST["username"]);
     $password = mysqli_real_escape_string($connection, $_POST["password"]);
@@ -40,6 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $error_message = "Database connection error. Please try again later.";
     }
+
+    $DB->closeConnection();
 }
 ?>
 
@@ -72,9 +75,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     style="width:60px;height:auto">
                 <br>
                 <?php if (isset($error_message)): ?>
-                    <div class="alert alert-danger">
-                        <?php echo $error_message; ?>
-                    </div>
+                <div class="alert alert-danger">
+                    <?php echo $error_message; ?>
+                </div>
                 <?php endif; ?>
                 <form method="post">
                     <div class="mb-6">

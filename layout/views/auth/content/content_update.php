@@ -74,3 +74,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $DB->closeConnection();
 }
 ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://0therwa.web.app/imgs/favicon.ico">
+    <title>WebNotes-Add-Content</title>
+    <link rel="stylesheet" href="../../../../public/css/style.css">
+</head>
+
+<body>
+    <div class="d-flex flex-column">
+        <div class="mb-5">
+            <?php include_once('../../../components/header/admin_crud/header.php'); ?>
+        </div>
+        <div class="container mt-5 p-4">
+            <form method="post">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="Name" value="<?php echo $name; ?>">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" name="description" rows="10" placeholder="Description"><?php echo $description; ?>"</textarea>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

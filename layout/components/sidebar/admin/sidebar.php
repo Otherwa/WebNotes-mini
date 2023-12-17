@@ -1,34 +1,12 @@
 <?php
-
-// DB
-function getDatabaseSubConnection()
-{
-    $SERVER_URL = 'localhost:3306';
-    $USER_AGENT = 'root';
-    $PASSWORD = '';
-    $DB_NAME = 'WebNote';
-
-    $servername = $SERVER_URL;
-    $username = $USER_AGENT;
-    $password = $PASSWORD;
-    $database = $DB_NAME;
-
-    $connection = new mysqli($servername, $username, $password, $database);
-
-    if ($connection->connect_error) {
-        die("Connection failed: " . $connection->connect_error);
-    }
-
-    return $connection;
-}
-
-
+// require_once("../../../../config/dbCon.php");
+// ! Gets from Dashboard.php
 // Use the $DB object to perform database operations
-$connection = getDatabaseSubConnection();
 
 function getContextInfo()
 {
-    global $connection;
+    $DB = new DatabaseConnection();
+    $connection = $DB->getConnection();
 
 
     $sql = "SELECT * FROM context";
@@ -46,13 +24,13 @@ function getContextInfo()
 }
 ?>
 
-<div class="offcanvas offcanvas-start font-monospace" tabindex="-1" id="offcanvasNav"
+<div class="offcanvas offcanvas-start font-monospace" style="z-index: 4999 !important;" tabindex="-1" id="offcanvasNav"
     aria-labelledby="offcanvasNavLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasNavLabel">Angular Content</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body p-4">
+    <div class="offcanvas-body p-4" >
         <ul class="navbar-nav">
             <?php getContextInfo() ?>
         </ul>

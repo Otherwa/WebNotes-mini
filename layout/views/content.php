@@ -2,7 +2,7 @@
 
 // !gets from header/user.php 
 require_once("../../config/dbCon.php");
-// $connection = getDatabaseMainConnection();
+
 
 
 //? GET QUERY STRING GUARD

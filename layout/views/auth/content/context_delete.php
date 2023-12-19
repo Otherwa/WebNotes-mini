@@ -7,7 +7,7 @@ try {
     if (!isset($_SESSION['user_id'])) {
         // ? User is not logged in, so redirect to the login page
         header("Location: ../login.php");
-        exit; // ? Make sure to exit to prevent further script execution
+        exit;
     }
 
     if (isset($_GET['Id'])) {

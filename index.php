@@ -7,6 +7,11 @@
     <link rel="icon" type="image/x-icon" href="https://0therwa.web.app/imgs/favicon.ico">
     <title>WebNotes</title>
     <link rel="stylesheet" href="./public/css/style.css">
+    <style>
+        .jconfirm-box{
+            height: 50vh !important; 
+        }
+    </style>
 </head>
 
 <body></body>
@@ -31,8 +36,8 @@
                     </p>
                 </div>
                 <div class="imgs">
-                    <img class="jumbotron-img-1" src="./public/imgs/marin.jpeg" alt="Image" class="jumbotron-image">
-                    <img class="jumbotron-img-2" src="./public/imgs/html.jpeg" alt="Image" class="jumbotron-image">
+                    <img class="jumbotron-img-1" src="./public/imgs/html.jpeg" alt="Image" class="jumbotron-image">
+                    <img class="jumbotron-img-2" src="./public/imgs/marin.jpeg" alt="Image" class="jumbotron-image">
                 </div>
             </div>
         </div>
@@ -64,5 +69,52 @@
 <!-- Scroll Reveal -->
 <script type="text/javascript" src="https://unpkg.com/scrollreveal"></script>
 <script type="text/javascript" src="./public/js/index.js"></script>
+<!-- JSQUERY POPUP -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+<script type="text/javascript">
+// cookies
+
+// Set a cookie
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        while (cookie.charAt(0) === ' ') {
+            cookie = cookie.substring(1, cookie.length);
+        }
+        if (cookie.indexOf(nameEQ) === 0) {
+            return cookie.substring(nameEQ.length, cookie.length);
+        }
+    }
+    return null;
+}
+
+var myCookieValue = getCookie("myCookie");
+
+if (!myCookieValue) {
+    $.dialog({
+    title: 'Padhai Kar',
+    content: `
+        <h6>8th se Exam Hai</h6>
+        <img src="https://i.pinimg.com/originals/23/47/2a/23472abd8d346e4cdc387b49aa11b0a9.gif">
+    `,
+    });
+} 
+
+setCookie("myCookie", "padhlo", 1);
+</script>
 
 </html>

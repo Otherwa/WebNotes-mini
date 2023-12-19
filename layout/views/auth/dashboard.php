@@ -7,7 +7,7 @@ session_start();
 if (!isset($_SESSION['user_id'])) {
     // ?  User is not logged in, so redirect to the login page
     header("Location: ./login.php");
-    exit; // ? Make sure to exit to prevent further script execution
+    exit;
 }
 
 function generateTableRows($tableId)
@@ -158,15 +158,15 @@ function getContext()
                 <div class="modal-dialog modal-fullscreen">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="myModalLabel">Context Name</h5>
+                            <h5 class="modal-title" id="myModalLabel">Context 🔨</h5>
                         </div>
                         <div class="modal-body">
                             <!--form -->
-                            <div class="container d-flex flex-row gap-2 h-100">
-                                <form method="post" class="w-50" action="./content/context_add.php">
+                            <div class="container d-flex flex-column gap-2 h-100">
+                                <form method="post" action="./content/context_add.php">
                                     <div class="form-group">
                                         <label for="name" class="mb-3">Name</label>
-                                        <input type="text" class="form-control" name="name" placeholder="Name">
+                                        <input type="text" class="form-control"  name="name" placeholder="Name">
                                     </div>
                                     <br>
                                     <button type="submit" class="btn btn-primary">Add</button>
@@ -180,7 +180,7 @@ function getContext()
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,7 @@ session_start();
 if (!isset($_SESSION['user_id'])) {
     // User is not logged in, so redirect to the login page
     header("Location: ../login.php");
-    exit; // Make sure to exit to prevent further script execution
+    exit;
 }
 
 // Check if the 'Id' parameter is set in the URL
@@ -94,11 +94,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <form method="post">
                 <div class="form-group">
                     <label for="name">Name</label>
+                    <br>
+                    <br>
                     <input type="text" class="form-control" name="name" placeholder="Name" value="<?php echo $name; ?>">
                 </div>
                 <br>
                 <div class="form-group">
                     <label for="description">Description</label>
+                    <br>
+                    <br>
                     <textarea class="form-control" name="description" rows="10" placeholder="Description"><?php echo $description; ?>"</textarea>
                 </div>
                 <br>

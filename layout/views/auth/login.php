@@ -13,16 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = mysqli_real_escape_string($connection, $_POST["username"]);
     $password = mysqli_real_escape_string($connection, $_POST["password"]);
 
-    // Perform authentication by querying the database
-
-    // Ensure the connection is established successfully
     if ($connection) {
-        // Prepare and execute a query to fetch user data by username
         $query = "SELECT * FROM users WHERE username = '$username'";
         echo $query;
         $result = mysqli_query($connection, $query);
 
-        // Check if a user with the given username exists
         if (mysqli_num_rows($result) === 1) {
             $user = mysqli_fetch_assoc($result);
             // Verify the   
@@ -30,8 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $pass = $user['password'];
             if ($pass == $user['password']) {
                 // Successful login
-                $_SESSION['user_id'] = $user['id']; // Store a user identifier in the session
-                header("Location: ./dashboard.php"); // Redirect to the dashboard page
+                $_SESSION['user_id'] = $user['id'];
+                header("Location: ./dashboard.php"); 
                 exit;
             }
         }

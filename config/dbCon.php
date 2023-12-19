@@ -2,10 +2,10 @@
 
 class DatabaseConnection
 {
-    private const servername = 'sql105.infinityfree.com';
-    private const username = 'if0_35374573';
-    private const password = 'bUxZ5PZ6co';
-    private const database = 'if0_35374573_webnote';
+    private const servername = 'localhost';
+    private const username = 'root';
+    private const password = '';
+    private const database = 'webnote';
     private $connection;
 
     public function __construct()

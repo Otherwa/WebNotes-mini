@@ -1,14 +1,34 @@
 <?php
 
 
+function getDatabaseMainConnection()
+{
+    $SERVER_URL = 'localhost';
+    $USER_AGENT = 'root';
+    $PASSWORD = '';
+    $DB_NAME = 'webnote';
+
+    $servername = $SERVER_URL;
+    $username = $USER_AGENT;
+    $password = $PASSWORD;
+    $database = $DB_NAME;
+
+    $connection = new mysqli($servername, $username, $password, $database);
+
+    if ($connection->connect_error) {
+        die("Connection failed: " . $connection->connect_error);
+    }
+
+    return $connection;
+}
+
+
+$connection = getDatabaseMainConnection();
+
 function getContext()
 {
-    
+    global $connection;
     global $id;
-
-    //? from dashboard
-    $DB = new DatabaseConnection();
-    $connection = $DB->getConnection();
 
     $sql = "SELECT * FROM context";
     $result = $connection->query($sql);

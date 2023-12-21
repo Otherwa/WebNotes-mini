@@ -1,5 +1,8 @@
 <?php
 include_once("../../../../config/dbCon.php");
+include_once('../../../../config/cusexceptions.php');
+use CustomException\ContentsException as ContentExp;
+
 session_start();
 
 // ? Check if the user is already logged in and has an active session
@@ -14,11 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $description = $_POST['description'];
     $For = $_GET['For'];
 
-    // Check if $name and $description are empty
-    if (empty($name) || empty($description)) {
-        echo "Name and description cannot be empty.";
-        exit();
-    }
+
 
     $DB = new DatabaseConnection();
     $connection = $DB->getConnection();
@@ -28,6 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     try {
+
+        // Check if $name and $description are empty
+        if (empty($name) || empty($description)) {
+            throw new ContentExp("Error adding new content: " . mysqli_error($connection));
+        }
+
         $query = "SELECT * FROM context WHERE Name='$For'";
         $Result = mysqli_query($connection, $query);
 
@@ -41,15 +46,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $insertQuery = "INSERT INTO content (Name, Context_id, Description, Created_at) VALUES ('$name','$context_id', '$description', NOW())";
 
             if (!mysqli_query($connection, $insertQuery)) {
-                throw new Exception("Error adding new content: " . mysqli_error($connection));
+                throw new ContentExp("Error adding new content: " . mysqli_error($connection));
             }
 
             header("Location: ../dashboard.php");
         } else {
-            throw new Exception("Context not found: " . mysqli_error($connection));
+            throw new ContentExp("Context not found: " . mysqli_error($connection));
         }
-    } catch (Exception $e) {
-        echo $e->getMessage();
+    } catch (ContentExp $e) {
+        $msg = $e->getmsg();
+        echo '<script type ="text/JavaScript">';
+        echo "alert('" . "$msg" . "');";
+        echo "setTimeout(()=>{window.history.back()}, 1000);";
+        echo "</script>";
     } finally {
         $DB->closeConnection();
     }

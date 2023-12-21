@@ -1,6 +1,10 @@
 <?php
 include_once("../../../../config/dbCon.php");
+include_once('../../../../config/cusexceptions.php');
+use CustomException\ContentsException as ContentExp;
+
 session_start();
+
 
 try {
     // ? Check if the user is already logged in and has an active session
@@ -16,8 +20,13 @@ try {
         $DB = new DatabaseConnection();
         $connection = $DB->getConnection();
 
+        // Check if $name and $description are empty
+        if (empty($name)) {
+            throw new ContentExp("Error adding new content");
+        }
+
         if (!$connection) {
-            throw new Exception("Database connection failed: " . mysqli_connect_error());
+            throw new ContentExp("Database connection failed");
         }
 
         $insertQuery = "INSERT INTO context (Name) VALUES ('$name')";
@@ -28,11 +37,15 @@ try {
             header("Location: ../dashboard.php");
             exit;
         } else {
-            throw new Exception("Error adding new content: " . mysqli_error($connection));
+            throw new ContentExp("Error adding new content");
         }
     }
-} catch (Exception $e) {
-    echo "Exception: " . $e->getMessage();
+} catch (ContentExp $e) {
+    $msg = $e->getmsg();
+    echo '<script type ="text/JavaScript">';
+    echo "alert('" . "$msg" . "');";
+    echo "setTimeout(()=>{window.history.back()}, 1000);";
+    echo "</script>";
 } finally {
     if (isset($DB)) {
         $DB->closeConnection();

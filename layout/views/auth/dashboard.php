@@ -5,7 +5,7 @@ session_start();
 // * Database configuration
 // ? Check if the user is already logged in and has an active session
 if (!isset($_SESSION['user_id'])) {
-    // ?  User is not logged in, so redirect to the login page
+    // ? User is not logged in, so redirect to the login page
     header("Location: ./login.php");
     exit;
 }
@@ -42,6 +42,36 @@ function generateTableRows($tableId)
     $DB->closeConnection();
 }
 
+function generateTextContent($tableId)
+{
+    $DB = new DatabaseConnection();
+    $connection = $DB->getConnection();
+
+    $empQuery = "SELECT * FROM content where Context_id=$tableId";
+    $empRecords = mysqli_query($connection, $empQuery);
+
+    $textContent = '';
+
+    while ($row = mysqli_fetch_assoc($empRecords)) {
+        $textContent .= "Id: " . $row["Id"] . "\n";
+        $textContent .= "Name: " . $row['Name'] . "\n";
+        $textContent .= "Description: " . $row["Description"] . "\n";
+        $textContent .= "Context_id: " . $row['Context_id'] . "\n";
+        $timestamp = strtotime($row['Created_at']);
+        $new_date_format = date('l, F j, Y', $timestamp);
+        $textContent .= "Created_at: " . $new_date_format . "\n";
+        $timestamp = strtotime($row['Updated_at']);
+        $new_date_format = date('l, F j, Y', $timestamp);
+        $textContent .= "Updated_at: " . $new_date_format . "\n";
+        // $id = $row["Id"];
+        // $textContent .= "Action: Update: ./content/content_update.php?Id=$id, Delete: ./content/content_delete.php?Id=$id\n\n";
+    }
+
+    $DB->closeConnection();
+
+    return $textContent;
+}
+
 function generateHTMLTable($tableName, $tableId, $tableClass)
 {
     echo '<div class="container-fluid">';
@@ -76,7 +106,6 @@ function generateHTMLTable($tableName, $tableId, $tableClass)
     echo '</div>';
     echo '</div>';
 }
-
 
 function get_contexts()
 {
@@ -119,6 +148,15 @@ function getContext()
         echo "No navigation items found.";
     }
 }
+
+if (isset($_GET['download']) && $_GET['download'] == 'text') {
+    header('Content-Type: text/plain');
+    header('Content-Disposition: attachment; filename="table_data.txt"');
+
+    echo generateTextContent($_GET['tableId']); // Assuming you pass the tableId as a parameter in the URL
+
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -132,72 +170,72 @@ function getContext()
     <link rel="stylesheet" href="../../../public/css/style.css">
 </head>
 
-<body></body>
-<div class="body">
-    <!-- Header Section -->
-    <div class="d-flex flex-column">
-        <div class="col-12">
-            <?php include_once('../../components/header/admin/header.php'); ?>
-        </div>
+<body>
 
-        <!-- Body Content Section -->
-        <!-- Your page content goes here -->
-        <?php include_once('../../components/sidebar/admin/sidebar.php'); ?>
-
-        <!-- new Context -->
-        <div class="container mt-5 p-3">
-            <!-- Button trigger modal -->
-            <div class="container mt-5 d-flex flex-row-reverse">
-                <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#myModal">
-                    New Context 📝
-                </button>
+    <div class="body">
+        <!-- Header Section -->
+        <div class="d-flex flex-column">
+            <div class="col-12">
+                <?php include_once('../../components/header/admin/header.php'); ?>
             </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-fullscreen">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="myModalLabel">Context 🔨</h5>
-                        </div>
-                        <div class="modal-body">
-                            <!--form -->
-                            <div class="container d-flex flex-column gap-2 h-100">
-                                <form method="post" action="./content/context_add.php">
-                                    <div class="form-group">
-                                        <label for="name" class="mb-3">Name</label>
-                                        <input type="text" class="form-control"  name="name" placeholder="Name">
-                                    </div>
-                                    <br>
-                                    <button type="submit" class="btn btn-primary">Add</button>
-                                </form>
+            <!-- Body Content Section -->
+            <!-- Your page content goes here -->
+            <?php include_once('../../components/sidebar/admin/sidebar.php'); ?>
+
+            <!-- new Context -->
+            <div class="container mt-5 p-3">
+                <!-- Button trigger modal -->
+                <div class="container mt-5 d-flex flex-row-reverse">
+                    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#myModal">
+                        New Context 📝
+                    </button>
+                </div>
+
+                <a href="<?php echo $_SERVER['REQUEST_URI']; ?>?download=text&tableId=1">Download</a>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-fullscreen">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="myModalLabel">Context 🔨</h5>
+                            </div>
+                            <div class="modal-body">
                                 <!--form -->
-                                <div class="container p-4">
-                                    <ul type="square" class="overflow-y-scroll h-100">
-                                        <?php getContext() ?>
-                                    </ul>
+                                <div class="container d-flex flex-column gap-2 h-100">
+                                    <form method="post" action="./content/context_add.php">
+                                        <div class="form-group">
+                                            <label for="name" class="mb-3">Name</label>
+                                            <input type="text" class="form-control" name="name" placeholder="Name">
+                                        </div>
+                                        <br>
+                                        <button type="submit" class="btn btn-primary">Add</button>
+                                    </form>
+                                    <!--form -->
+                                    <div class="container p-4">
+                                        <ul type="square" class="overflow-y-scroll h-100">
+                                            <?php getContext() ?>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- tables -->
+            <?php // Call the function to generate the HTML table
+            get_contexts()
+                ?>
+
+
+            <!-- Footer Section -->
         </div>
-
-        <!-- Modal -->
-
-        <!-- tables -->
-        <?php // Call the function to generate the HTML table
-        get_contexts()
-            ?>
-
-
-        <!-- Footer Section -->
     </div>
-</div>
 </body>
 
 <!-- Datatable-->
@@ -210,7 +248,7 @@ function getContext()
 <!-- Bootstrap JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-</script>
+    </script>
 <!-- Scroll Reveal -->
 <script type="text/javascript" src="https://unpkg.com/scrollreveal"></script>
 <script type="text/javascript" src="../../../public/js/dashboard.js"></script>

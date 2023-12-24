@@ -1,3 +1,6 @@
+<?php
+null;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,8 +11,8 @@
     <title>WebNotes</title>
     <link rel="stylesheet" href="./public/css/style.css">
     <style>
-        .jconfirm-box{
-            height: 50vh !important; 
+        .jconfirm-box {
+            height: 50vh !important;
         }
     </style>
 </head>
@@ -54,6 +57,9 @@
                 </div>
             </div>
         </div>
+        <div>
+
+        </div>
         <div id="Contact">
             <!-- Footer Section -->
             <?php include_once('./layout/components/footer.php'); ?>
@@ -65,7 +71,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-</script>
+    </script>
 <!-- Scroll Reveal -->
 <script type="text/javascript" src="https://unpkg.com/scrollreveal"></script>
 <script type="text/javascript" src="./public/js/index.js"></script>
@@ -74,47 +80,47 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
 <script type="text/javascript">
-// cookies
+    // cookies
 
-// Set a cookie
-function setCookie(name, value, days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + value + expires + "; path=/";
-}
-
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var cookies = document.cookie.split(';');
-    for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i];
-        while (cookie.charAt(0) === ' ') {
-            cookie = cookie.substring(1, cookie.length);
+    // Set a cookie
+    function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
         }
-        if (cookie.indexOf(nameEQ) === 0) {
-            return cookie.substring(nameEQ.length, cookie.length);
-        }
+        document.cookie = name + "=" + value + expires + "; path=/";
     }
-    return null;
-}
 
-var myCookieValue = getCookie("myCookie");
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i];
+            while (cookie.charAt(0) === ' ') {
+                cookie = cookie.substring(1, cookie.length);
+            }
+            if (cookie.indexOf(nameEQ) === 0) {
+                return cookie.substring(nameEQ.length, cookie.length);
+            }
+        }
+        return null;
+    }
 
-if (!myCookieValue) {
-    $.dialog({
-    title: 'Padhai Kar',
-    content: `
+    var myCookieValue = getCookie("myCookie");
+
+    if (!myCookieValue) {
+        $.dialog({
+            title: 'Padhai Kar',
+            content: `
         <h6>8th se Exam Hai</h6>
         <img src="https://i.pinimg.com/originals/23/47/2a/23472abd8d346e4cdc387b49aa11b0a9.gif">
     `,
-    });
-} 
+        });
+    }
 
-setCookie("myCookie", "padhlo", 1);
+    setCookie("myCookie", "padhlo", 1);
 </script>
 
 </html>

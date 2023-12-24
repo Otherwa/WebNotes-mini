@@ -1,5 +1,9 @@
 <?php
 include_once("../../../../config/dbCon.php");
+include_once('../../../../config/cusexceptions.php');
+
+use CustomException\ContentsException as ContentExp;
+
 session_start();
 
 try {
@@ -16,9 +20,6 @@ try {
         $DB = new DatabaseConnection();
         $connection = $DB->getConnection();
 
-        if (!$connection) {
-            throw new Exception("Database connection failed: " . mysqli_connect_error());
-        }
 
         $deleteQuery = "DELETE FROM context WHERE Id = $id";
         $deleteResult = mysqli_query($connection, $deleteQuery);
@@ -27,11 +28,11 @@ try {
             header("Location: ../dashboard.php");
             exit;
         } else {
-            throw new Exception("Error deleting record: " . mysqli_error($connection));
+            throw new ContentExp("Error deleting record");
         }
     }
-} catch (Exception $e) {
-    echo "Exception: " . $e->getMessage();
+} catch (ContentExp $e) {
+    echo "Exception: " . $e->getmsg();
 } finally {
     if (isset($DB)) {
         $DB->closeConnection();

@@ -59,6 +59,48 @@ function getContentData()
 
     $DB->closeConnection();
 }
+
+// ? Download Content
+function generateTextContent($tableId)
+{
+    $DB = new DatabaseConnection();
+    $connection = $DB->getConnection();
+
+    $empQuery = "SELECT * FROM content where Context_id=$tableId";
+    $empRecords = mysqli_query($connection, $empQuery);
+
+    $textContent = '';
+
+    while ($row = mysqli_fetch_assoc($empRecords)) {
+        $textContent .= "\n";
+        $textContent .= "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
+        $textContent .= "Name: " . $row['Name'] . "\n";
+        $textContent .= "---------------------------------------------------------------------------\n";
+        $textContent .= "Description: " . $row["Description"] . "\n";
+        $textContent .= "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
+    }
+
+    $DB->closeConnection();
+
+    return $textContent;
+}
+
+if (isset($_GET['download']) && $_GET['download'] == 'text') {
+    $tableId = htmlspecialchars($_GET['tableId'], ENT_QUOTES, 'UTF-8');
+    // ? File Save as a Backup
+    $PATH = "../../files/table_data.txt";
+
+    $myfile = fopen($PATH, "w");
+    fwrite($myfile, generateTextContent($tableId));
+    fclose($myfile);
+
+    // ? Send a req raw http
+    header('Content-Type: text/plain; charset=UTF-8', $response_code = 200);
+    header('Content-Disposition: attachment; filename="' . urlencode('table_data.txt') . '"', $response_code = 200);
+    readfile($PATH);
+    exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,13 +116,13 @@ function getContentData()
 
     <!-- ! custom -->
     <style>
-    ol {
-        padding: 2rem;
-    }
+        ol {
+            padding: 2rem;
+        }
 
-    ol li {
-        padding: 10px;
-    }
+        ol li {
+            padding: 10px;
+        }
     </style>
 </head>
 
@@ -108,12 +150,14 @@ function getContentData()
         <!-- sidebar -->
         <!-- Body Content Section -->
         <div class="container p-lg-4 mt-5">
+            <div class="pt-4 mt-4" style="display:flex;flex-direction:row;justify-content:flex-end;">
+                <span><a class="btn btn-outline-primary display-6 nav-item"
+                        href="<?php echo $_SERVER['REQUEST_URI'] . '&download=text' . '&tableId=' . $ContentID; ?>">Download</a></span>
+            </div>
             <ol type="1">
                 <?php getContentData() ?>
             </ol>
         </div>
-        <!-- Footer Section -->
-        <!-- <?php include_once('./layout/components/footer.php'); ?> -->
     </div>
 </div>
 </body>
@@ -121,7 +165,7 @@ function getContentData()
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-</script>
+    </script>
 <!-- Scroll Reveal -->
 <script type="text/javascript" src="https://unpkg.com/scrollreveal"></script>
 <script type="text/javascript" src="./public/js/index.js"></script>

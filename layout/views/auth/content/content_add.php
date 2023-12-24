@@ -1,6 +1,7 @@
 <?php
 include_once("../../../../config/dbCon.php");
 include_once('../../../../config/cusexceptions.php');
+
 use CustomException\ContentsException as ContentExp;
 
 session_start();
@@ -30,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Check if $name and $description are empty
         if (empty($name) || empty($description)) {
-            throw new ContentExp("Error adding new content: " . mysqli_error($connection));
+            throw new ContentExp("Error adding new content");
         }
 
         $query = "SELECT * FROM context WHERE Name='$For'";
@@ -46,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $insertQuery = "INSERT INTO content (Name, Context_id, Description, Created_at) VALUES ('$name','$context_id', '$description', NOW())";
 
             if (!mysqli_query($connection, $insertQuery)) {
-                throw new ContentExp("Error adding new content: " . mysqli_error($connection));
+                throw new ContentExp("Error adding new content");
             }
 
             header("Location: ../dashboard.php");

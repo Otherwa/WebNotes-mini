@@ -1,6 +1,7 @@
 <?php
 include_once("../../../../config/dbCon.php");
 include_once('../../../../config/cusexceptions.php');
+
 use CustomException\ContentsException as ContentExp;
 
 session_start();

@@ -42,35 +42,6 @@ function generateTableRows($tableId)
     $DB->closeConnection();
 }
 
-function generateTextContent($tableId)
-{
-    $DB = new DatabaseConnection();
-    $connection = $DB->getConnection();
-
-    $empQuery = "SELECT * FROM content where Context_id=$tableId";
-    $empRecords = mysqli_query($connection, $empQuery);
-
-    $textContent = '';
-
-    while ($row = mysqli_fetch_assoc($empRecords)) {
-        $textContent .= "Id: " . $row["Id"] . "\n";
-        $textContent .= "Name: " . $row['Name'] . "\n";
-        $textContent .= "Description: " . $row["Description"] . "\n";
-        $textContent .= "Context_id: " . $row['Context_id'] . "\n";
-        $timestamp = strtotime($row['Created_at']);
-        $new_date_format = date('l, F j, Y', $timestamp);
-        $textContent .= "Created_at: " . $new_date_format . "\n";
-        $timestamp = strtotime($row['Updated_at']);
-        $new_date_format = date('l, F j, Y', $timestamp);
-        $textContent .= "Updated_at: " . $new_date_format . "\n";
-        // $id = $row["Id"];
-        // $textContent .= "Action: Update: ./content/content_update.php?Id=$id, Delete: ./content/content_delete.php?Id=$id\n\n";
-    }
-
-    $DB->closeConnection();
-
-    return $textContent;
-}
 
 function generateHTMLTable($tableName, $tableId, $tableClass)
 {
@@ -149,14 +120,7 @@ function getContext()
     }
 }
 
-if (isset($_GET['download']) && $_GET['download'] == 'text') {
-    header('Content-Type: text/plain');
-    header('Content-Disposition: attachment; filename="table_data.txt"');
 
-    echo generateTextContent($_GET['tableId']); // Assuming you pass the tableId as a parameter in the URL
-
-    exit;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -191,8 +155,6 @@ if (isset($_GET['download']) && $_GET['download'] == 'text') {
                         New Context 📝
                     </button>
                 </div>
-
-                <a href="<?php echo $_SERVER['REQUEST_URI']; ?>?download=text&tableId=1">Download</a>
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-fullscreen">

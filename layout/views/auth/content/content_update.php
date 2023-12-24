@@ -103,10 +103,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label for="description">Description</label>
                     <br>
                     <br>
-                    <textarea class="form-control" name="description" rows="10" placeholder="Description"><?php echo $description; ?>"</textarea>
+                    <textarea class="form-control" name="description" rows="10"
+                        placeholder="Description"><?php echo $description; ?>"</textarea>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-primary">Update</button>
             </form>
         </div>
     </div>

@@ -1,0 +1,228 @@
+{
+    "extension": "linecounter",
+    "version": "0.2.7",
+    "workspace": "c:\\xampp\\htdocs",
+    "linecount": [
+        {
+            "version": "0.2.7",
+            "counttime": "2023-12-26 09:19:25",
+            "filesum": 30,
+            "codesum": 1348,
+            "commentsum": 134,
+            "blanksum": 276,
+            "statistics": {
+                ".js": {
+                    "code": 6,
+                    "comment": 2,
+                    "blank": 1
+                },
+                ".css": {
+                    "code": 97,
+                    "comment": 26,
+                    "blank": 25
+                },
+                ".php": {
+                    "code": 1016,
+                    "comment": 49,
+                    "blank": 190
+                },
+                ".txt": {
+                    "code": 156,
+                    "comment": 0,
+                    "blank": 27
+                },
+                ".sql": {
+                    "code": 73,
+                    "comment": 57,
+                    "blank": 33
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 2,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "config\\cusexceptions.php"
+                },
+                {
+                    "blank": 8,
+                    "code": 32,
+                    "comment": 0,
+                    "filename": "config\\dbCon.php"
+                },
+                {
+                    "blank": 33,
+                    "code": 73,
+                    "comment": 57,
+                    "filename": "config\\webnote.sql"
+                },
+                {
+                    "blank": 27,
+                    "code": 156,
+                    "comment": 0,
+                    "filename": "files\\table_data.txt"
+                },
+                {
+                    "blank": 13,
+                    "code": 111,
+                    "comment": 2,
+                    "filename": "index.php"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "layout\\components\\footer.php"
+                },
+                {
+                    "blank": 0,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "layout\\components\\header\\admin\\header.php"
+                },
+                {
+                    "blank": 0,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "layout\\components\\header\\admin_crud\\header.php"
+                },
+                {
+                    "blank": 0,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "layout\\components\\header\\admin_login\\header.php"
+                },
+                {
+                    "blank": 13,
+                    "code": 57,
+                    "comment": 1,
+                    "filename": "layout\\components\\header\\user\\header.php"
+                },
+                {
+                    "blank": 6,
+                    "code": 28,
+                    "comment": 4,
+                    "filename": "layout\\components\\sidebar\\admin\\sidebar.php"
+                },
+                {
+                    "blank": 0,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "layout\\components\\sidebar\\index\\sidebar.php"
+                },
+                {
+                    "blank": 21,
+                    "code": 87,
+                    "comment": 3,
+                    "filename": "layout\\views\\auth\\content\\content_add.php"
+                },
+                {
+                    "blank": 8,
+                    "code": 35,
+                    "comment": 4,
+                    "filename": "layout\\views\\auth\\content\\content_delete.php"
+                },
+                {
+                    "blank": 17,
+                    "code": 84,
+                    "comment": 6,
+                    "filename": "layout\\views\\auth\\content\\content_update.php"
+                },
+                {
+                    "blank": 11,
+                    "code": 41,
+                    "comment": 3,
+                    "filename": "layout\\views\\auth\\content\\context_add.php"
+                },
+                {
+                    "blank": 8,
+                    "code": 31,
+                    "comment": 2,
+                    "filename": "layout\\views\\auth\\content\\context_delete.php"
+                },
+                {
+                    "blank": 31,
+                    "code": 181,
+                    "comment": 8,
+                    "filename": "layout\\views\\auth\\dashboard.php"
+                },
+                {
+                    "blank": 14,
+                    "code": 83,
+                    "comment": 5,
+                    "filename": "layout\\views\\auth\\login.php"
+                },
+                {
+                    "blank": 3,
+                    "code": 8,
+                    "comment": 4,
+                    "filename": "layout\\views\\auth\\logout.php"
+                },
+                {
+                    "blank": 35,
+                    "code": 131,
+                    "comment": 7,
+                    "filename": "layout\\views\\content.php"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "public\\css\\bootstrap\\bootstrap.css"
+                },
+                {
+                    "blank": 25,
+                    "code": 95,
+                    "comment": 26,
+                    "filename": "public\\css\\style.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "public\\css\\tailwind\\tailwind.css"
+                },
+                {
+                    "filename": "public\\imgs\\coldcode.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "public\\imgs\\html.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "public\\imgs\\marin-alt.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "public\\imgs\\marin.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "public\\js\\dashboard.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 3,
+                    "comment": 2,
+                    "filename": "public\\js\\index.js"
+                }
+            ]
+        }
+    ]
+}

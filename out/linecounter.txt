@@ -1,0 +1,51 @@
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2023-12-26 09:19:25
+count workspace : c:\xampp\htdocs
+total files : 30
+total code lines : 1348
+total comment lines : 134
+total blank lines : 276
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |            .js|              6|              2|              1|   0.45|
+   |           .css|             97|             26|             25|    7.2|
+   |           .php|           1016|             49|            190|     75|
+   |           .txt|            156|              0|             27|     12|
+   |           .sql|             73|             57|             33|    5.4|
+   -------------------------------------------------------------------------
+config\cusexceptions.php, code is 15, comment is 0, blank is 2.
+config\dbCon.php, code is 32, comment is 0, blank is 8.
+config\webnote.sql, code is 73, comment is 57, blank is 33.
+files\table_data.txt, code is 156, comment is 0, blank is 27.
+index.php, code is 111, comment is 2, blank is 13.
+layout\components\footer.php, code is 3, comment is 0, blank is 0.
+layout\components\header\admin\header.php, code is 22, comment is 0, blank is 0.
+layout\components\header\admin_crud\header.php, code is 22, comment is 0, blank is 0.
+layout\components\header\admin_login\header.php, code is 22, comment is 0, blank is 0.
+layout\components\header\user\header.php, code is 57, comment is 1, blank is 13.
+layout\components\sidebar\admin\sidebar.php, code is 28, comment is 4, blank is 6.
+layout\components\sidebar\index\sidebar.php, code is 23, comment is 0, blank is 0.
+layout\views\auth\content\content_add.php, code is 87, comment is 3, blank is 21.
+layout\views\auth\content\content_delete.php, code is 35, comment is 4, blank is 8.
+layout\views\auth\content\content_update.php, code is 84, comment is 6, blank is 17.
+layout\views\auth\content\context_add.php, code is 41, comment is 3, blank is 11.
+layout\views\auth\content\context_delete.php, code is 31, comment is 2, blank is 8.
+layout\views\auth\dashboard.php, code is 181, comment is 8, blank is 31.
+layout\views\auth\login.php, code is 83, comment is 5, blank is 14.
+layout\views\auth\logout.php, code is 8, comment is 4, blank is 3.
+layout\views\content.php, code is 131, comment is 7, blank is 35.
+public\css\bootstrap\bootstrap.css, code is 1, comment is 0, blank is 0.
+public\css\style.css, code is 95, comment is 26, blank is 25.
+public\css\tailwind\tailwind.css, code is 1, comment is 0, blank is 0.
+public\imgs\coldcode.png, it is a binary file.
+public\imgs\html.jpeg, it is a binary file.
+public\imgs\marin-alt.jpeg, it is a binary file.
+public\imgs\marin.jpeg, it is a binary file.
+public\js\dashboard.js, code is 3, comment is 0, blank is 0.
+public\js\index.js, code is 3, comment is 2, blank is 1.
+===============================================================================

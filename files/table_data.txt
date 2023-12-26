@@ -1,183 +1,52 @@
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Name: accesskeys
+Name: Node Boilerplate
 ---------------------------------------------------------------------------
-Description:  <label for="label">Alt + q for shortcut key for the below input   field</label> <br />
- <!-- ? Input tags -->
- <!-- * accesskey shortcut alt key tag -->
- <input type="text" accesskey="q" tabindex="1"> <br />
+Description: const express = require('express')
+const app = express()
+const port = 3000
 
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Name: data-
+Name: Middleware
 ---------------------------------------------------------------------------
-Description: <pre data-="tempData" hidden="true">
-                    Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Dignissimos cupiditate ex suscipit,
-                    quia ut error modi minima perspiciatis vero asperiores
-                    hic eligendi aliquam aut at obcaecati nostrum tempora!
-                    Labore, veritatis!
-            </pre>
+Description: const express = require('express')
+const app = express()
 
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+app.use((req, res, next) => {
+  console.log('Time:', Date.now())
+  next()
+})
+// or
+app.use('/user/:id', (req, res, next) => {
+  console.log('Request URL:', req.originalUrl)
+  next()
+}, (req, res, next) => {
+  console.log('Request Type:', req.method)
+  next()
+})
 
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Name: hidden
----------------------------------------------------------------------------
-Description:    <pre hidden="true">
-                    Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Dignissimos cupiditate ex suscipit,
-            </pre>
+// or
+function logOriginalUrl (req, res, next) {
+  console.log('Request URL:', req.originalUrl)
+  next()
+}
 
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function logMethod (req, res, next) {
+  console.log('Request Type:', req.method)
+  next()
+}
 
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Name: style
----------------------------------------------------------------------------
-Description: <span style="text-decoration: underline;">Noraml text</span>
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Name: draggable
----------------------------------------------------------------------------
-Description: <strong draggable="true"> Strong text</strong>
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Name: contenteditable
----------------------------------------------------------------------------
-Description: <blockquote contenteditable="true">BlockQuote Text Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Minima, deleniti
-                exercitationem quis commodi velit rerum laudantium. Ab consequatur placeat magni aperiam magnam
-                necessitatibus, fugit explicabo ipsa? Aliquam praesentium quidem sapiente!</blockquote> <br>
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Name: dropzone
----------------------------------------------------------------------------
-Description:             <pre hidden="true" dropzone="copy">
-                    Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Dignissimos cupiditate ex suscipit,
-            </pre>
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Name: spellcheck
----------------------------------------------------------------------------
-Description:  <label for="myText">myText1</label>
-            <input type="text" name="myText1" id="myText1" spellcheck="true">
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Name: dir
----------------------------------------------------------------------------
-Description: <label for="myText2">myText2</label>
-            <input type="text" name="myText2" id="myText2" dir="rtl">
-Output: 
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Name: ul
----------------------------------------------------------------------------
-Description: <h1>UL</h1>
-            <ul type="circle" style="list-style-type:decimal-leading-zero;">
-                <li>This is a paragraph 1</li>
-                <li>This is a paragraph 2</li>
-                <li>This is a paragraph 3</li>
-                <li>
-                    This is a paragraph 4 with sub-nested list
-                    <ol>
-                        <li>This is a sub paragraph 1</li>
-                        <li>This is a sub paragaqph 2</li>
-                        <li>This is a sub paragaqph 3</li>
-                        <li>This is a sub paragaqph 4</li>
-                    </ol>
-                </li>
-            </ul>
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Name: ol
----------------------------------------------------------------------------
-Description: <h1>OL</h1>
-            <ol type="I" style="list-style-type: lower-roman;">
-                <li>This is a paragrph 1</li>
-                <li>This is a paragrph 2</li>
-                <li>This is a paragrph 3</li>
-                <li>This is a paragrph 4
-                    <ul>
-                        <li>This is a sub nested 1</li>
-                        <li>This is a sub nested 2</li>
-                        <li>This is a sub nested 3</li>
-                    </ul>
-                </li>
-            </ol>
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Name: dl
----------------------------------------------------------------------------
-Description: <h1>Dl</h1>
-            <dt type="I" style="list-style-type: georgian;">
-            <dd>
-                LOL 1
-            </dd>
-            <dl>This is a paragraph 1</dl>
-            <dl>This is a paragraph 2</dl>
-            <dd>
-                LOL 2
-            </dd>
-            <dl>This is a paragraph 3</dl>
-            <dl>This is a paragraph 4</dl>
-            </dt>
-
-
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Name: Input - text
----------------------------------------------------------------------------
-Description: <input type="text" id="" name="" placeholder="Enter your Department" required> <br><br>
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Name: Input - password
----------------------------------------------------------------------------
-Description: <input type="password" id="" name="" placeholder="Password" required> <br><br>
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Name: Input - color
----------------------------------------------------------------------------
-Description:  <input type="color" id="" name="" value="#fedada"> <br><br>
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Name: Input-date
----------------------------------------------------------------------------
-Description: <input type="date" id="" name=""> <br><br>
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Name: Frameset
----------------------------------------------------------------------------
-Description: <!-- ! independet Tag instead of body for use (Depretatied) -->
-<frameset rows="15%,75%,15%">
-    <frame src="./header.html">
-        <frame src="./form.html">
-            <frame src="./footer.html">
-</frameset>
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Name: Object
----------------------------------------------------------------------------
-Description: <body>
-    <object data="https://www.youtube.com/embed/D28ntCyODmE" type="" height="150px" width="150px"></object>
-</body>
+const logStuff = [logOriginalUrl, logMethod]
+app.get('/user/:id', logStuff, (req, res, next) => {
+  res.send('User Info')
+})
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

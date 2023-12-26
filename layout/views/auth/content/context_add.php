@@ -21,7 +21,7 @@ try {
         $DB = new DatabaseConnection();
         $connection = $DB->getConnection();
 
-        // Check if $name and $description are empty
+        // ? Check if $name is empty
         if (empty($name)) {
             throw new ContentExp("Error adding new content");
         }

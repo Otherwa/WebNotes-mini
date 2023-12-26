@@ -5,8 +5,10 @@ require_once("../../config/dbCon.php");
 
 
 
-//? GET QUERY STRING GUARD
-
+//? GET @id & @title Fix
+if (!isset($_GET["id"]) && !isset($_GET["title"])) {
+    header('Location: ../../index.php');
+}
 
 $ContentID = $_GET["id"];
 $title = $_GET["title"];

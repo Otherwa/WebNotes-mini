@@ -28,7 +28,7 @@ if (isset($_GET['Id'])) {
 
         if ($deleteResult) {
             header("Location: ../dashboard.php");
-            exit; // Make sure to exit after redirect
+            exit();
         } else {
             echo "Error deleting record: " . mysqli_error($connection);
         }
@@ -39,7 +39,7 @@ if (isset($_GET['Id'])) {
     $DB->closeConnection();
 } else {
     header("Location: ../dashboard.php");
-    exit; // Make sure to exit after redirect
+    exit();
 }
 ?>
 <!DOCTYPE html>
